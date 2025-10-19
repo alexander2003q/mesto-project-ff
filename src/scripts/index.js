@@ -43,6 +43,14 @@ const popupCaption = imageModal.querySelector('.popup__caption');
 
 const placesList = document.querySelector('.places__list');
 
+function handleLike(likeButton) {
+  likeButton.classList.toggle('card__like-button_is-active');
+}
+
+function handleDelete(cardElement) {
+  cardElement.remove();
+}
+
 function handleImageClick(cardData) {
   popupImage.src = cardData.link;
   popupImage.alt = cardData.name;
@@ -52,12 +60,17 @@ function handleImageClick(cardData) {
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData, handleImageClick);
-  placesList.append(cardElement);
+  placesList.prepend(cardElement);
 }
 
 function renderInitialCards() {
   initialCards.forEach(function (cardData) {
-    const cardElement = createCard(cardData, handleImageClick);
+    const cardElement = createCard(
+      cardData,
+      handleImageClick,
+      handleLike,
+      handleDelete
+    );
     placesList.append(cardElement);
   });
 }
