@@ -59,7 +59,12 @@ function handleImageClick(cardData) {
 }
 
 function renderCard(cardData) {
-  const cardElement = createCard(cardData, handleImageClick);
+  const cardElement = createCard(
+    cardData,
+    handleImageClick,
+    handleLike,
+    handleDelete
+  );
   placesList.prepend(cardElement);
 }
 
